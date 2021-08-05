@@ -9,7 +9,6 @@ export const AddTransaction = () => {
     const {addTransaction} = useContext(GlobalContext);
     const enviar = (e) =>{
         e.preventDefault();
-        console.log('AddTransaction - enviar', e);
         const newTransaction = {
             id: Math.floor(Math.random() * 10000000),
             text,

@@ -2,3 +2,5 @@
 
 # 📋 Registrador de despesas
 Com uma interface bem simples e intuitiva ele cumpre seu objetivo, podendo registrar os gastos no mês ou ir fazendo a lista no supermercado.
+
+# Vou melhorar o readme, afgr vou aproveitar meu fim de semana.

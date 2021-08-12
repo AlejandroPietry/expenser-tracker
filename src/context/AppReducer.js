@@ -16,6 +16,12 @@ export default (state, action) =>{
                 ...state,
                 transactions: b
             }
+        case 'DELETE_ALL_TRANSACTIONS':
+            localStorage.clear()
+            return{
+                ...state,
+                transactions : []
+            }
         default:
             return state;
     }

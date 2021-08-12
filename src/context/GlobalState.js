@@ -2,7 +2,7 @@
  import AppReducer from './AppReducer';
 
  const jsonLocalStorage = localStorage.getItem('json')
- 
+
  const initialState = jsonLocalStorage != null?
   {transactions:JSON.parse(jsonLocalStorage)}:
   {transactions:[]}; 
@@ -29,10 +29,18 @@ export const GlobalProvider = ({children}) =>{
         })
     }
 
+    function deleteAllTransactions(){
+        dispatch({
+            type: 'DELETE_ALL_TRANSACTIONS',
+            payload : []
+        })
+    }
+
     return (<GlobalContext.Provider value={{
         transactions: state.transactions,
         deleteTransaction,
-        addTransaction
+        addTransaction,
+        deleteAllTransactions
     }}>
         {children}
     </GlobalContext.Provider>

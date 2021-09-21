@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\context"
   ],
+  "SelectedNode": "\\src\\context\\GlobalState.js",
   "PreviewInSolutionExplorer": false
 }

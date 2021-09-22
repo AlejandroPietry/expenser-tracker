@@ -1,11 +1,14 @@
 import React from 'react';
 import '../wwwroot/css/Login.css';
+import HttpRequest from '../wwwroot/HttpUtils/HttpRequest';
+
 export const Login = () => {
 
     const loginBtn = document.getElementById('login');
     const signupBtn = document.getElementById('signup');
 
     const loginBtnClick = (e) => {
+        console.log(e);
         let parent = e.target.parentNode.parentNode;
         Array.from(e.target.parentNode.parentNode.classList).find((element) => {
             if(element !== "slide-up") {
@@ -18,6 +21,7 @@ export const Login = () => {
     };
 
     const singUpBtnClick = (e) => {
+        console.log(e);
         let parent = e.target.parentNode;
         Array.from(e.target.parentNode.classList).find((element) => {
             if(element !== "slide-up") {
@@ -31,17 +35,23 @@ export const Login = () => {
 
     const loginSubmit = () => {
 
+        HttpRequest.httpPost("https://localhost:5001/api/Login/login", {
+            Email : document.getElementById('emailLogin').value,
+            Senha : document.getElementById('senhaLogin').value})
+        .then(response => response.json())
+        .then(response => {
+            localStorage.setItem("jwt", response.jwtToken);
+            window.location = "/";
+        });
     }
 
     const singUpSubmit = () => {
-        console.log(document.getElementById('nomeCadastro').value)
-        fetch("https://localhost:5001/api/Usuario/criar", {
-            method: 'POST',
-            body : JSON.stringify({
-                Nome : document.getElementById('nomeCadastro').value,
-                Email : document.getElementById('emailCadastro').value,
-                Senha : document.getElementById('senhaCadastro').value
-            })
+
+        HttpRequest.httpPost("https://localhost:5001/api/Usuario/criar",
+        {
+            Nome : document.getElementById('nomeCadastro').value,
+            Email : document.getElementById('emailCadastro').value,
+            Senha : document.getElementById('senhaCadastro').value
         });
     }
 
@@ -49,7 +59,7 @@ export const Login = () => {
         <>
            <div class="form-structor">
                 <div class="signup">
-                    <h2 class="form-title" id="signup" onClick={e => singUpBtnClick(e)}><span>or</span>Sign up</h2>
+                    <h2 class="form-title" id="signup" onClick={e => singUpBtnClick(e.target)}><span>or</span>Sign up</h2>
                     <div class="form-holder">
                         <input type="text" class="input" placeholder="Nome" id="nomeCadastro" />
                         <input type="email" class="input" placeholder="Email" id="emailCadastro"/>
@@ -59,12 +69,12 @@ export const Login = () => {
                 </div>
                 <div class="login slide-up">
                     <div class="center">
-                        <h2 class="form-title" id="login" onClick= {e => loginBtnClick(e)}><span>or</span>Log in</h2>
+                        <h2 class="form-title" id="login" onClick= {e => loginBtnClick(e.target)}><span>or</span>Log in</h2>
                         <div class="form-holder">
-                            <input type="email" class="input" placeholder="Email" />
-                            <input type="password" class="input" placeholder="Password" />
+                            <input type="email" class="input" placeholder="Email" id="emailLogin"/>
+                            <input type="password" class="input" placeholder="Password" id="senhaLogin"/>
                         </div>
-                        <button class="submit-btn">Log in</button>
+                        <button class="submit-btn" onClick={loginSubmit}>Log in</button>
                     </div>
                 </div>
             </div>

@@ -61,18 +61,18 @@ export const Login = () => {
             <div class="sign-in-htm">
                 <div class="group">
                     <label for="user" class="label">Email</label>
-                    <input id="user" type="text" class="input" />
+                    <input id="user" type="text" class="input" id="emailLogin"/>
                 </div>
                 <div class="group">
                     <label for="pass" class="label">Senha</label>
-                    <input id="pass" type="password" class="input" data-type="password" />
+                    <input id="pass" type="password" class="input" data-type="password" id="senhaLogin"/>
                 </div>
                 <div class="group">
                     <input id="check" type="checkbox" class="check" checked />
                     <label for="check"><span class="icon"></span> Manter logado!</label>
                 </div>
                 <div class="group">
-                    <input type="submit" class="button" value="Enter" />
+                    <input type="submit" class="button" value="Enter" onClick={loginSubmit}/>
                 </div>
                 <div class="hr"></div>
                 <div class="foot-lnk">
@@ -82,22 +82,22 @@ export const Login = () => {
             <div class="sign-up-htm">
                 <div class="group">
                     <label for="user" class="label">Nome do usuário</label>
-                    <input id="user" type="text" class="input" />
-                </div>
-                <div class="group">
-                    <label for="pass" class="label">Senha</label>
-                    <input id="pass" type="password" class="input" data-type="password" />
-                </div>
-                <div class="group">
-                    <label for="pass" class="label">Repetir senha</label>
-                    <input id="pass" type="password" class="input" data-type="password" />
+                    <input id="user" type="text" class="input" id="nomeCadastro"/>
                 </div>
                 <div class="group">
                     <label for="pass" class="label">Email</label>
-                    <input id="pass" type="text" class="input" />
+                    <input id="pass" type="text" class="input" id="emailCadastro"/>
                 </div>
                 <div class="group">
-                    <input type="submit" class="button" value="Cadastrar" />
+                    <label for="pass" class="label">Senha</label>
+                    <input id="pass" type="password" class="input" data-type="password" id="senhaCadastro"/>
+                </div>
+                {/*<div class="group">
+                    <label for="pass" class="label">Repetir senha</label>
+                    <input id="pass" type="password" class="input" data-type="password" />
+                </div>*/}
+                <div class="group">
+                    <input type="submit" class="button" value="Cadastrar" onClick={singUpSubmit}/>
                 </div>
             </div>
         </div>

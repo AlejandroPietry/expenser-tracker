@@ -3,7 +3,7 @@ import { Balance } from './Balance';
 import { IncomeExpenses } from './IncomeExpenses';
 import { TransactionList } from './TransactionList';
 import { AddTransaction } from './AddTransaction';
-import '../wwwroot/css/App.css'
+import '../wwwroot/css/App.cs'
 
 export const ExpenserTrakerMenu = () => {
     return (

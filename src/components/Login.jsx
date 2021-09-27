@@ -1,44 +1,36 @@
 import React from "react";
 import "../wwwroot/css/App.css";
+import {useFormik } from 'formik';
 import HttpRequest from "../wwwroot/HttpUtils/HttpRequest";
 
 export const Login = () => {
-  const loginBtn = document.getElementById("login");
-  const signupBtn = document.getElementById("signup");
 
-  const loginBtnClick = (e) => {
-    console.log(e);
-    let parent = e.target.parentNode.parentNode;
-    Array.from(e.target.parentNode.parentNode.classList).find((element) => {
-      if (element !== "slide-up") {
-        parent.classList.add("slide-up");
-      } else {
-        signupBtn.parentNode.classList.add("slide-up");
-        parent.classList.remove("slide-up");
-      }
-    });
-  };
-
-  const singUpBtnClick = (e) => {
-    console.log(e);
-    let parent = e.target.parentNode;
-    Array.from(e.target.parentNode.classList).find((element) => {
-      if (element !== "slide-up") {
-        parent.classList.add("slide-up");
-      } else {
-        loginBtn.parentNode.parentNode.classList.add("slide-up");
-        parent.classList.remove("slide-up");
-      }
-    });
-  };
+  const formik = useFormik({
+    initialValues: {
+      emailLogin: ''
+    },
+    onSubmit: values => {
+      alert(JSON.stringify(values, null,2));
+    },
+  });
 
   async function loginSubmit(){
+    let email = document.getElementById("emailLogin").value;
+    let senha = document.getElementById("senhaLogin").value;
+    console.log(email)
+    console.log(senha)
+    if(email.length < 1 || senha.length < 1)
+      alert('Preencher os campos corretamente!');
+
     let response = await HttpRequest.httpPost("https://localhost:5001/api/Login/login", {
       Email: document.getElementById("emailLogin").value,
       Senha: document.getElementById("senhaLogin").value,
     });
 
     let data = await response.json();
+    if(data.Error){
+      alert(data.ErrorMessage)
+    }
     console.log("json response ", data)
     localStorage.setItem("jwt", data.jwtToken);
     window.location = "/";
@@ -63,7 +55,7 @@ export const Login = () => {
             <div class="sign-in-htm">
                 <div class="group">
                     <label for="user" class="label">Email</label>
-                    <input id="user" type="text" class="input" id="emailLogin"/>
+                    <input id="user" type="email" class="input" id="emailLogin" onChange={formik.handleChange} value={formik.values.emailLogin}/>
                 </div>
                 <div class="group">
                     <label for="pass" class="label">Senha</label>

@@ -6,6 +6,9 @@ import { AddTransaction } from './AddTransaction';
 import '../wwwroot/css/App.css'
 
 export const ExpenserTrakerMenu = () => {
+    if(localStorage.getItem('jwt') == null)
+        window.location = '/login';
+
     return (
         <>
             <Balance />

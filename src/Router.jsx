@@ -17,7 +17,7 @@ export const Router = () => {
                     <Login />
                 </Route>
 
-                <Route path="/">
+                <Route path="/menu">
                     <ExpenserTrakerMenu />
                 </Route>           
             </Switch>

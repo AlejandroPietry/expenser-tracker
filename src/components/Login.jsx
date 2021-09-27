@@ -32,24 +32,26 @@ export const Login = () => {
     });
   };
 
-  const loginSubmit = () => {
-    HttpRequest.httpPost("https://localhost:5001/api/Login/login", {
+  async function loginSubmit(){
+    let response = await HttpRequest.httpPost("https://localhost:5001/api/Login/login", {
       Email: document.getElementById("emailLogin").value,
       Senha: document.getElementById("senhaLogin").value,
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        localStorage.setItem("jwt", response.jwtToken);
-        window.location = "/";
-      });
+    });
+
+    let data = await response.json();
+    console.log("json response ", data)
+    localStorage.setItem("jwt", data.jwtToken);
+    window.location = "/";
   };
 
-  const singUpSubmit = () => {
-    HttpRequest.httpPost("https://localhost:5001/api/Usuario/criar", {
-      Nome: document.getElementById("nomeCadastro").value,
-      Email: document.getElementById("emailCadastro").value,
-      Senha: document.getElementById("senhaCadastro").value,
-    });
+  async function singUpSubmit() {
+        var response = await HttpRequest.httpPost("https://localhost:5001/api/Usuario/criar", {
+          Nome: document.getElementById("nomeCadastro").value,
+          Email: document.getElementById("emailCadastro").value,
+          Senha: document.getElementById("senhaCadastro").value,
+        });
+
+        let data = await response.json();
   };
 
   return (

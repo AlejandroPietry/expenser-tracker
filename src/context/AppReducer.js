@@ -1,3 +1,5 @@
+import HttpRequest from "../wwwroot/HttpUtils/HttpRequest";
+
 export default (state, action) =>{
     switch(action.type){
         case 'DELETE_TRANSACTION':
@@ -9,6 +11,9 @@ export default (state, action) =>{
                 transactions: t
             }
         case 'ADD_TRANSACTION':
+            HttpRequest.httpPost('psotRouter', {});
+
+            HttpRequest.httpGet('');
             localStorage.removeItem('json');
             const b = [action.payload, ...state.transactions];
             localStorage.setItem('json', JSON.stringify(b));
@@ -18,6 +23,8 @@ export default (state, action) =>{
             }
         case 'DELETE_ALL_TRANSACTIONS':
             localStorage.removeItem('json')
+
+            HttpRequest.httpGet('deleteRoute');
             return{
                 ...state,
                 transactions : []

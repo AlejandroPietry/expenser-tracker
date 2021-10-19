@@ -8,27 +8,21 @@ export const AddTransaction = () => {
     const [valor, setAmout] = useState(0);
 
     const {addTransaction} = useContext(GlobalContext);
+    
     async function enviar(e){
         e.preventDefault();
         
-        var tipoTransacao = valor.includes('-') ? 0 : 1;
+        var tipoTransacao = valor < 0 ? 0 : 1;
         
         const newTransaction = {
             titulo,
             valor: +valor,
             tipoTransacao
         }
-        console.log('addTransaction', newTransaction);
-        let response = await HttpRequest.httpPost("https://localhost:5001/api/Transacao/criar", newTransaction);
-
-        const newTransactionForLocalStorage = {
-            id : Math.floor(Math.random() * 10000000),
-            titulo,
-            valor: +valor,
-            tipoTransacao
-        }
-        console.log('transaction for localstorage', newTransactionForLocalStorage);
-        addTransaction(newTransactionForLocalStorage);
+        await HttpRequest.httpPost('https://localhost:5001/api/Transacao/criar', newTransaction);
+        var request = await HttpRequest.httpGet('https://localhost:5001/api/Transacao/all-by-user');
+        var jsonsResponse = await request.json();
+        addTransaction(jsonsResponse);
 
         LimparCampos();
     }

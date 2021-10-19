@@ -25,4 +25,14 @@ export default class{
         headers : this.BuildHeaders()
     });
 
+    static httpGetComAwait(url){
+        Promise.resolve(fetch(url, {
+            method: 'GET',
+            headers: this.BuildHeaders()
+        })).then(function(v) {
+            console.log('httpconasjdkajsdkj ', v)
+            return v;
+        })
+    }
+
 }

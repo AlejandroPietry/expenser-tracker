@@ -1,12 +1,8 @@
  import React, {createContext, useReducer} from 'react';
+ import HttpRequest from '../wwwroot/HttpUtils/HttpRequest';
  import AppReducer from './AppReducer';
 
- const jsonLocalStorage = localStorage.getItem('json')
-
- const initialState = jsonLocalStorage != null?
-  {transactions:JSON.parse(jsonLocalStorage)}:
-  {transactions:[]}; 
-
+ const initialState = {transactions:[]};
  //Create context
 export const GlobalContext = createContext(initialState);
 
@@ -15,17 +11,17 @@ export const GlobalProvider = ({children}) =>{
     const[state, dispatch] = useReducer(AppReducer, initialState);
 
     // Actions
-    function deleteTransaction(id){        
+    function deleteTransaction(transactionList){        
         dispatch({
             type:'DELETE_TRANSACTION',
-            payload: id
+            payload: transactionList
         });       
     }
 
-    function addTransaction(transaction){
+    function addTransaction(transactionList){
         dispatch({
             type:'ADD_TRANSACTION',
-            payload:transaction
+            payload:transactionList
         })
     }
 

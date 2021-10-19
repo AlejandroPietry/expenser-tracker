@@ -33,7 +33,7 @@ export const Login = () => {
     }
     console.log("json response ", data)
     localStorage.setItem("jwt", data.jwtToken);
-    window.location = "/";
+    window.location = "/menu";
   };
 
   async function singUpSubmit() {

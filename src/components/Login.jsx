@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../wwwroot/css/App.css";
 import {useFormik } from 'formik';
 import HttpRequest from "../wwwroot/HttpUtils/HttpRequest";
+import Preloader from '../components/Loader';
 
 export const Login = () => {
-
+  const Loader = useContext(Preloader); 
+  
   const formik = useFormik({
     initialValues: {
       emailLogin: ''

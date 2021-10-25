@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "../wwwroot/css/App.css";
 import {useFormik } from 'formik';
 import HttpRequest from "../wwwroot/HttpUtils/HttpRequest";
+import alertToast from 'react-hot-toast';
 
 
 export const Login = () => {
@@ -18,8 +19,6 @@ export const Login = () => {
   async function loginSubmit(){
     let email = document.getElementById("emailLogin").value;
     let senha = document.getElementById("senhaLogin").value;
-    console.log(email)
-    console.log(senha)
     if(email.length < 1 || senha.length < 1)
       alert('Preencher os campos corretamente!');
 
@@ -29,13 +28,14 @@ export const Login = () => {
     });
 
     let data = await response.json();
-    if(data.Error){
-      alert(data.ErrorMessage)
+    console.log(data);
+    if(data.error){
+      alertToast.error(data.errorMessage)
     }
-    
-    console.log("json response ", data)
-    localStorage.setItem("jwt", data.jwtToken);
-    window.location = "/menu";
+    else{
+      localStorage.setItem("jwt", data.jwtToken);
+      window.location = "/menu";  
+    }  
   };
 
   async function singUpSubmit() {

@@ -19,6 +19,10 @@ export const Router = () => {
 
                 <Route path="/menu">
                     <ExpenserTrakerMenu />
+                </Route>
+                <Route path="/">
+                    <h3>Finge que aqui tem uma home linda kkkkkk</h3>
+                    <button><a href="/login">Fazer Login</a></button>
                 </Route>           
             </Switch>
         </BrowserRouter>  

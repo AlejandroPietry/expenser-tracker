@@ -24,6 +24,10 @@ export default class{
         method: 'GET',
         headers : this.BuildHeaders()
     });
+    static Delete = (url, id) => fetch(url + id, {
+        method :'DELETE',
+        headers : this.BuildHeaders()
+    })
 
     static httpGetComAwait(url){
         Promise.resolve(fetch(url, {

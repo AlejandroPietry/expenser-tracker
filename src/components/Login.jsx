@@ -28,7 +28,7 @@ export const Login = () => {
     });
 
     let data = await response.json();
-    console.log(data);
+
     if(data.error){
       alertToast.error(data.errorMessage)
     }
@@ -46,6 +46,17 @@ export const Login = () => {
         });
 
         let data = await response.json();
+
+        if(data.error){
+          alertToast.error(data.errorMessage);
+        }
+        else{
+          alertToast.success("Cadastrado com sucesso!");
+          setTimeout(function(){
+            var loginLabel = document.getElementById('tab-1');
+            loginLabel.click();
+          }, 1000);
+        }
   };
 
   return (
@@ -64,7 +75,7 @@ export const Login = () => {
                     <input id="pass" type="password" class="input" data-type="password" id="senhaLogin"/>
                 </div>
                 <div class="group">
-                    <input id="check" type="checkbox" class="check" checked />
+                    <input id="check" type="checkbox" class="check" />
                     <label for="check"><span class="icon"></span> Manter logado!</label>
                 </div>
                 <div class="group">

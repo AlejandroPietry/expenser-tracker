@@ -7,6 +7,7 @@ import {
   } from "react-router-dom";
 import { Login } from './components/Login';
 import { ExpenserTrakerMenu } from './components/ExpenserTrakerMenu';
+import { Home } from "./components/Home";
 
 export const Router = () => {
     return (
@@ -21,8 +22,7 @@ export const Router = () => {
                     <ExpenserTrakerMenu />
                 </Route>
                 <Route path="/">
-                    <h3>Finge que aqui tem uma home linda kkkkkk</h3>
-                    <button><a href="/login">Fazer Login</a></button>
+                    <Home />
                 </Route>           
             </Switch>
         </BrowserRouter>  

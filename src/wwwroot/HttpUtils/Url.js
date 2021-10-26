@@ -5,7 +5,7 @@ export default class{
             return 'https://localhost:5001/';
         }
         else{
-            return 'urlDaApiEmProd';
+            return 'https://expensertracker-api.azurewebsites.net/';
         }
     }
 }

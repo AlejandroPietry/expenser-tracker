@@ -3,7 +3,7 @@ import "../wwwroot/css/App.css";
 import {useFormik } from 'formik';
 import HttpRequest from "../wwwroot/HttpUtils/HttpRequest";
 import alertToast from 'react-hot-toast';
-
+import Url from "../wwwroot/HttpUtils/Url";
 
 export const Login = () => {
   
@@ -22,7 +22,7 @@ export const Login = () => {
     if(email.length < 1 || senha.length < 1)
       alert('Preencher os campos corretamente!');
 
-    let response = await HttpRequest.httpPost("https://localhost:5001/api/Login/login", {
+    let response = await HttpRequest.httpPost(Url.WebApi() + "api/Login/login", {
       Email: document.getElementById("emailLogin").value,
       Senha: document.getElementById("senhaLogin").value,
     });
@@ -39,7 +39,7 @@ export const Login = () => {
   };
 
   async function singUpSubmit() {
-        var response = await HttpRequest.httpPost("https://localhost:5001/api/Usuario/criar", {
+        var response = await HttpRequest.httpPost(Url.WebApi() + "api/Usuario/criar", {
           Nome: document.getElementById("nomeCadastro").value,
           Email: document.getElementById("emailCadastro").value,
           Senha: document.getElementById("senhaCadastro").value,

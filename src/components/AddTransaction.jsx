@@ -1,5 +1,6 @@
 import React, {useState, useContext} from 'react'
 import { GlobalContext } from '../context/GlobalState';
+import Url from '../wwwroot/HttpUtils/Url';
 import HttpRequest from '../wwwroot/HttpUtils/HttpRequest.js'
 
 export const AddTransaction = () => {
@@ -19,8 +20,8 @@ export const AddTransaction = () => {
             valor: +valor,
             tipoTransacao
         }
-        await HttpRequest.httpPost('https://localhost:5001/api/Transacao/criar', newTransaction);
-        var request = await HttpRequest.httpGet('https://localhost:5001/api/Transacao/all-by-user');
+        await HttpRequest.httpPost(Url.WebApi() + 'api/Transacao/criar', newTransaction);
+        var request = await HttpRequest.httpGet(Url.WebApi() + 'api/Transacao/all-by-user');
         var jsonsResponse = await request.json();
         addTransaction(jsonsResponse);
 

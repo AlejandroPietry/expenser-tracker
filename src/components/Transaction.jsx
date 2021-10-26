@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import { GlobalContext } from '../context/GlobalState';
+import Url from '../wwwroot/HttpUtils/Url';
 import HttpRequest from '../wwwroot/HttpUtils/HttpRequest';
 
 export const Transaction = ({transaction}) => {
@@ -7,8 +8,8 @@ export const Transaction = ({transaction}) => {
     const sing = transaction.valor < 0? '-' : '+';
 
     async function deletarTransacao(id){
-        await HttpRequest.Delete('https://localhost:5001/api/Transacao/deletar/', id);
-        var request = await HttpRequest.httpGet('https://localhost:5001/api/Transacao/all-by-user/');
+        await HttpRequest.Delete(Url.WebApi() + 'api/Transacao/deletar/', id);
+        var request = await HttpRequest.httpGet(Url.WebApi() + 'api/Transacao/all-by-user/');
         var jsonsResponse = await request.json();
         deleteTransaction(jsonsResponse);
     }

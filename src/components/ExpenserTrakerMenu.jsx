@@ -7,6 +7,7 @@ import { AddTransaction } from './AddTransaction';
 import alertToast from 'react-hot-toast';
 import HttpRequest from '../wwwroot/HttpUtils/HttpRequest';
 import { HubConnectionBuilder } from '@microsoft/signalr';
+import Url from '../wwwroot/HttpUtils/Url';
 import '../wwwroot/css/App.css'
 
 export const ExpenserTrakerMenu = () => {
@@ -14,7 +15,7 @@ export const ExpenserTrakerMenu = () => {
     const {addTransaction} = useContext(GlobalContext);
     
     useEffect(() => {
-        const newConnection = new HubConnectionBuilder().withUrl('https://localhost:5001/hubs/notify')
+        const newConnection = new HubConnectionBuilder().withUrl(Url.WebApi() + 'hubs/notify')
         .withAutomaticReconnect()
         .build();
 
@@ -41,7 +42,7 @@ export const ExpenserTrakerMenu = () => {
 
         useEffect(() => {
             async function fetchMyApi(){
-              var request = await HttpRequest.httpGet('https://localhost:5001/api/Transacao/all-by-user');
+              var request = await HttpRequest.httpGet(Url.WebApi() + 'api/Transacao/all-by-user');
               var jsonReponse = await request.json();
               addTransaction(jsonReponse);
             }

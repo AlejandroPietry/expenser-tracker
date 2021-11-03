@@ -27,15 +27,20 @@ export const Login = () => {
       Senha: document.getElementById("senhaLogin").value,
     });
 
-    let data = await response.json();
+    try{
+      let data = await response.json();
 
-    if(data.error){
-      alertToast.error(data.errorMessage)
+      if(data.error){
+        alertToast.error(data.errorMessage)
+      }
+      else{
+        localStorage.setItem("jwt", data.jwtToken);
+        window.location = "/menu";  
+      }
     }
-    else{
-      localStorage.setItem("jwt", data.jwtToken);
-      window.location = "/menu";  
-    }  
+    catch(e){
+      console.log(e)
+    }
   };
 
   async function singUpSubmit() {
@@ -44,19 +49,23 @@ export const Login = () => {
           Email: document.getElementById("emailCadastro").value,
           Senha: document.getElementById("senhaCadastro").value,
         });
+        try{
+          let data = await response.json();
 
-        let data = await response.json();
-
-        if(data.error){
-          alertToast.error(data.errorMessage);
+          if(data.error){
+            alertToast.error(data.errorMessage);
+          }
+          else{
+            alertToast.success("Cadastrado com sucesso!");
+            setTimeout(function(){
+              var loginLabel = document.getElementById('tab-1');
+              loginLabel.click();
+            }, 1000);
+          }
         }
-        else{
-          alertToast.success("Cadastrado com sucesso!");
-          setTimeout(function(){
-            var loginLabel = document.getElementById('tab-1');
-            loginLabel.click();
-          }, 1000);
-        }
+        catch(e){
+          console.log(e)
+        }      
   };
 
   return (

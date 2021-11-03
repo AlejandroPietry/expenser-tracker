@@ -20,12 +20,11 @@ export const AddTransaction = () => {
             valor: +valor,
             tipoTransacao
         }
+        LimparCampos();
         await HttpRequest.httpPost(Url.WebApi() + 'api/Transacao/criar', newTransaction);
         var request = await HttpRequest.httpGet(Url.WebApi() + 'api/Transacao/all-by-user');
         var jsonsResponse = await request.json();
         addTransaction(jsonsResponse);
-
-        LimparCampos();
     }
 
     function LimparCampos(){

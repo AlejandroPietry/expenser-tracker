@@ -1,5 +1,4 @@
  import React, {createContext, useReducer} from 'react';
- import HttpRequest from '../wwwroot/HttpUtils/HttpRequest';
  import AppReducer from './AppReducer';
 
  const initialState = {transactions:[]};

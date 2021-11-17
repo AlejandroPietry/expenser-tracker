@@ -21,7 +21,7 @@ export const AddTransaction = () => {
             tipoTransacao
         }
         LimparCampos();
-        await HttpRequest.httpPost(Url.WebApi() + 'api/Transacao/criar', newTransaction);
+        await HttpRequest.httpPost(Url.WebApi() + 'api/Transacao', newTransaction);
         var request = await HttpRequest.httpGet(Url.WebApi() + 'api/Transacao/all-by-user');
         var jsonsResponse = await request.json();
         addTransaction(jsonsResponse);

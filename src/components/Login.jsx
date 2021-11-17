@@ -20,7 +20,7 @@ export const Login = () => {
     let email = document.getElementById("emailLogin").value;
     let senha = document.getElementById("senhaLogin").value;
     if(email.length < 1 || senha.length < 1)
-      alert('Preencher os campos corretamente!');
+      return alert('Preencher os campos corretamente!');
 
     let response = await HttpRequest.httpPost(Url.WebApi() + "api/Login/login", {
       Email: document.getElementById("emailLogin").value,
@@ -44,12 +44,13 @@ export const Login = () => {
   };
 
   async function singUpSubmit() {
-        var response = await HttpRequest.httpPost(Url.WebApi() + "api/Usuario/criar", {
+        
+    try{
+        var response = await HttpRequest.httpPost(Url.WebApi() + "api/Usuario", {
           Nome: document.getElementById("nomeCadastro").value,
           Email: document.getElementById("emailCadastro").value,
           Senha: document.getElementById("senhaCadastro").value,
         });
-        try{
           let data = await response.json();
 
           if(data.error){

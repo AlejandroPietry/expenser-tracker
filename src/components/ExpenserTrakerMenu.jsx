@@ -9,6 +9,7 @@ import HttpRequest from '../wwwroot/HttpUtils/HttpRequest';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 import Url from '../wwwroot/HttpUtils/Url';
 import '../wwwroot/css/App.css'
+import { Header } from './Header';
 
 export const ExpenserTrakerMenu = () => {
     const [connection, setConnection] = useState(null);
@@ -51,6 +52,7 @@ export const ExpenserTrakerMenu = () => {
 
     return (
         <>
+            <Header />
             <Balance />
             <IncomeExpenses />
             <TransactionList />

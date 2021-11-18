@@ -4,9 +4,14 @@ import {useFormik } from 'formik';
 import HttpRequest from "../wwwroot/HttpUtils/HttpRequest";
 import alertToast from 'react-hot-toast';
 import Url from "../wwwroot/HttpUtils/Url";
+import { GlobalContext } from "../context/GlobalState";
 
 export const Login = () => {
   
+  const {setIdentity} = useContext(GlobalContext);
+  
+  console.log(useContext(GlobalContext));
+
   const formik = useFormik({
     initialValues: {
       emailLogin: ''
@@ -35,7 +40,8 @@ export const Login = () => {
       }
       else{
         localStorage.setItem("jwt", data.jwtToken);
-        window.location = "/menu";  
+        setIdentity(data.jwtToken, data.nome)
+        //window.location = "/menu";
       }
     }
     catch(e){

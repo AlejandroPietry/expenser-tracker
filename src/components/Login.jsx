@@ -41,7 +41,7 @@ export const Login = () => {
       else{
         localStorage.setItem("jwt", data.jwtToken);
         setIdentity(data.jwtToken, data.nome)
-        //window.location = "/menu";
+        window.location = "/menu";
       }
     }
     catch(e){

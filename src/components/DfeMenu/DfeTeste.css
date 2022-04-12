@@ -1,0 +1,138 @@
+/** grid **/
+body, main {
+    display: grid;
+    grid-gap: 1rem;
+}
+main {
+    grid-template: "content" "summary" "actions" "help" "promo";
+}
+@media (min-width: 50rem) {
+    main {
+        grid-template: "promo promo" "content summary" "content actions" "content help";
+        grid-template-columns: auto 20rem;
+   }
+}
+.summary {
+    grid-area: summary;
+}
+.promo {
+    grid-area: promo;
+}
+.actions {
+    grid-area: actions;
+}
+.cart {
+    grid-area: content;
+}
+.help {
+    grid-area: help;
+}
+/** styling **/
+@media (min-width: 50rem) {
+    body, main {
+        max-width: 60rem;
+   }
+    body {
+        margin: auto;
+   }
+}
+.summary {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    background: rgba(92, 82, 122, 1);
+}
+.summary .total {
+    font-family: monospace;
+    text-align: right;
+}
+.cart .item {
+    display: flex;
+    justify-content: space-between;
+    font-family: monospace;
+    font-size: 18px;
+}
+.cart .item:not(:last-child) {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dotted rgba(96, 112, 159, 1);
+}
+.cart .name {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+}
+.cart .price {
+    font-family: monospace;
+    margin: 0;
+}
+@media (min-width: 50rem) {
+    .cart {
+        padding: 2rem 1rem;
+   }
+    .cart .name, .cart .price {
+        font-size: 24px;
+   }
+    .cart .item:not(:last-child) {
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+   }
+}
+.actions {
+    background: rgba(82, 122, 112, 1);
+    text-align: right;
+}
+.actions button {
+    background: rgba(38, 217, 172, 1);
+    box-shadow: 0 2px 4px rgba(17, 34, 30, 1);
+    border: none;
+    border-radius: 3px;
+    padding: 0.5rem 1rem;
+}
+.promo {
+    color: rgba(60, 61, 41, 1);
+    background: rgba(119, 122, 82, 1);
+    font-weight: 800;
+}
+@media (min-width: 50rem) {
+    .promo {
+        min-height: 0;
+        text-align: center;
+   }
+}
+.help {
+    color: rgba(201, 167, 156, 1);
+    background: rgba(122, 92, 82, 1);
+}
+header, footer, section {
+    background: rgba(65, 71, 88, 1);
+    box-shadow: 0 4px 4px 2px rgba(22, 24, 29, 0.2);
+    border-radius: 3px;
+    padding: 1rem;
+}
+section {
+    min-height: 3rem;
+}
+header, footer {
+    box-shadow: none;
+    color: rgba(76, 83, 103, 1);
+    background: rgba(46, 50, 62, 1);
+    border: 1px dashed rgba(65, 71, 88, 1);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    word-spacing: 1rem;
+    font-weight: 800;
+}
+body {
+    color: white;
+    background: #323743;
+    padding: 20px;
+    font-family: "Heebo", sans-serif;
+    font-weight: 300;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
